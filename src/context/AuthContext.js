@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState, useEffect } from 'react'
 import firebase from '../firebase'
 
 export const AuthContext = createContext()
@@ -7,6 +7,18 @@ export const AuthContextProvider = (props) => {
 
     const [User, setUser] = useState(null)
     const [LogOn, setLogOn] = useState(false)
+
+    useEffect(() => {
+        if(localStorage.getItem("LogOn")){
+            setUser(JSON.parse(localStorage.getItem("User")))
+            setLogOn(localStorage.getItem("LogOn"))
+        }
+    },[])
+
+    useEffect(() => {
+        localStorage.setItem("User",JSON.stringify(User))
+        localStorage.setItem("LogOn",LogOn)
+    }, [User,LogOn])
 
     const SignUpFirebase = (email, password) => {
         firebase.auth().createUserWithEmailAndPassword(email, password)

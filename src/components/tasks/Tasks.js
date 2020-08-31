@@ -4,7 +4,7 @@ import { Task } from './Task'
 export const Tasks = () => {
     return (
         <>
-            <table class="table table-dark container" style={{marginTop:"30px"}}>
+            <table className="table table-dark container" style={{marginTop:"30px"}}>
                 <thead>
                     <tr className="text-info">
                         <th scope="col">Tasks</th>
