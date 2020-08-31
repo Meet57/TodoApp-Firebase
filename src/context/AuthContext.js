@@ -18,6 +18,10 @@ export const AuthContextProvider = (props) => {
     useEffect(() => {
         localStorage.setItem("User",JSON.stringify(User))
         localStorage.setItem("LogOn",LogOn)
+        if(!LogOn){
+            localStorage.removeItem("User")
+            localStorage.removeItem("LogOn")
+        }
     }, [User,LogOn])
 
     const SignUpFirebase = (email, password) => {
@@ -54,6 +58,8 @@ export const AuthContextProvider = (props) => {
         firebase.auth().signOut().then(() => {
             setUser(null)
             setLogOn(false)
+            localStorage.removeItem("User")
+            localStorage.removeItem("LogOn")
         }).catch(function (error) {
             console.log(error.code, error.message)
         });
