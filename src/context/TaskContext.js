@@ -11,17 +11,19 @@ export const TaskContextProvider = (props) => {
     const { User } = useContext(AuthContext)
 
     useEffect(() => {
-        firebase.firestore()
-        .collection("Users")
-        .doc(User.id)
-        .collection("Tasks")
-        .onSnapshot((snapshot) => {
-            const newtask = snapshot.docs.map((doc)=>({
-                id : doc.id,
-                ...doc.data()
-            }))
-            setTasks(newtask)
-        })
+        if (User !== null) {
+            firebase.firestore()
+                .collection("Users")
+                .doc(User.id)
+                .collection("Tasks")
+                .onSnapshot((snapshot) => {
+                    const newtask = snapshot.docs.map((doc) => ({
+                        id: doc.id,
+                        ...doc.data()
+                    }))
+                    setTasks(newtask)
+                })
+        }
     }, [])
 
 
@@ -37,11 +39,11 @@ export const TaskContextProvider = (props) => {
         firebase.firestore().collection("Users").doc(User.id).collection("Tasks").add(obj)
     }
 
-    const DeleteTaskFireBase = (id,completed) => {
+    const DeleteTaskFireBase = (id, completed) => {
         firebase.firestore().collection("Users").doc(User.id).collection("Tasks").doc(id).delete()
     }
 
-    const UpdateTaskFireBase = (id,completed) => {
+    const UpdateTaskFireBase = (id, completed) => {
         firebase.firestore().collection("Users").doc(User.id).collection("Tasks").doc(id).update({
             completed: !completed
         })
