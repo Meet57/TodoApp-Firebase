@@ -4,10 +4,14 @@ import { TaskContext } from '../../context/TaskContext'
 export const Task = (props) => {
 
     const { id, addedon, task, completed } = props.task
-    const { DeleteTaskFireBase } = useContext(TaskContext)
+    const { DeleteTaskFireBase,UpdateTaskFireBase } = useContext(TaskContext)
 
     const handleDelete = (e) => {
         DeleteTaskFireBase(id,completed)
+    }
+
+    const handleUpdate = (e) => {
+        UpdateTaskFireBase(id,completed)
     }
 
     return (
@@ -16,7 +20,7 @@ export const Task = (props) => {
                 <th>{task}</th>
                 <td>{addedon}</td>
                 <td>
-                    <span className="material-icons" style={{ cursor: "pointer" }}>
+                    <span className="material-icons" onClick={handleUpdate} style={ completed ? { cursor: "pointer",color:"#51f542" } : { cursor: "pointer" }}>
                         check_circle
                     </span>
                 </td>

@@ -41,12 +41,19 @@ export const TaskContextProvider = (props) => {
         firebase.firestore().collection("Users").doc(User.id).collection("Tasks").doc(id).delete()
     }
 
+    const UpdateTaskFireBase = (id,completed) => {
+        firebase.firestore().collection("Users").doc(User.id).collection("Tasks").doc(id).update({
+            completed: !completed
+        })
+    }
+
     return (
         <TaskContext.Provider
             value={{
                 Tasks,
                 AddTaskFireBase,
-                DeleteTaskFireBase
+                DeleteTaskFireBase,
+                UpdateTaskFireBase
             }}
         >
             {props.children}
