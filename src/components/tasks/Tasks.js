@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Task } from './Task'
+import { TaskContext } from '../../context/TaskContext'
 
 export const Tasks = () => {
+
+    const {Tasks} = useContext( TaskContext )
+
     return (
         <>
             <table className="table table-dark container" style={{marginTop:"30px"}}>
@@ -14,7 +18,11 @@ export const Tasks = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <Task />
+                    {Tasks.map((task)=>{
+                        return(
+                            <Task key={task.id} task={task} />
+                        )
+                    })}
                 </tbody>
             </table>
         </>

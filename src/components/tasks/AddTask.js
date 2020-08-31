@@ -1,38 +1,30 @@
-import React, { Component } from 'react'
+import React, { useState, useContext } from 'react'
+import { TaskContext } from '../../context/TaskContext'
 
-export class AddTask extends Component {
-    state = {
-        task: ''
-    }
+export const AddTask = () => {
 
-    handleChange = (e) => {
-        this.setState({
-            [e.target.id]: e.target.value
-        })
-    }
+    const [task, setTask] = useState("")
+    const { AddTaskFireBase } = useContext(TaskContext)
 
-    handleSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
-        console.log('state', this.state)
+        AddTaskFireBase(task)
+        setTask('')
     }
 
-    render() {
-        return (
-            <>
-                <form className="container"
-                    autoComplete="off"
-                    style={{ marginTop: "30px" }}
-                    onSubmit={this.handleSubmit}
-                >
-                    <div className="form-group">
-                        <label htmlFor="task">Task Description</label>
-                        <input type="text" className="form-control" id="task" onChange={this.handleChange} />
-                    </div>
-                    <button type="submit" className="btn btn-primary">Add Task</button>
-                </form>
-            </>
-        )
-    }
+    return (
+        <>
+            <form className="container"
+                autoComplete="off"
+                style={{ marginTop: "30px" }}
+                onSubmit={handleSubmit}
+            >
+                <div className="form-group">
+                    <label htmlFor="task">Task Description</label>
+                    <input type="text" className="form-control" id="task" onChange={(e) => setTask(e.target.value)} value={task} />
+                </div>
+                <button type="submit" className="btn btn-primary">Add Task</button>
+            </form>
+        </>
+    )
 }
-
-export default AddTask
