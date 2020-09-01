@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState,Fragment } from 'react'
 import { TaskContext } from '../../context/TaskContext'
 import { Modal, Button } from 'react-bootstrap'
 
@@ -25,17 +25,17 @@ export const Task = (props) => {
     const handleEdit = (e) => {
         e.preventDefault()
         setShow(false)
-        EditTaskFireBase(id, EditText)
-        setEditText('')
+        if(EditText !== ""){EditTaskFireBase(id, EditText)
+        setEditText('')}
     }
 
     return (
-        <>
+        <Fragment>
             <tr>
                 <th>{task}</th>
                 <td>{addedon}</td>
                 <td>
-                    <span className="material-icons" style={{ color: '#66ffe1' }} variant="primary" onClick={handleShow} >
+                    <span className="material-icons" style={{ color: '#66ffe1',cursor: "pointer" }} variant="primary" onClick={handleShow} >
                         create
                     </span>
 
@@ -74,6 +74,6 @@ export const Task = (props) => {
                     </span>
                 </td>
             </tr>
-        </>
+        </Fragment>
     )
 }

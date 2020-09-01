@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, Fragment } from 'react'
 import { AuthContext } from '../../context/AuthContext'
 import { Redirect } from 'react-router-dom'
 
@@ -19,7 +19,7 @@ const SignIn = () => {
     }
 
     return (
-        <>
+        <Fragment>
             <form className="container"
                 autoComplete="off"
                 style={{ marginTop: "30px" }}
@@ -36,7 +36,7 @@ const SignIn = () => {
                 </div>
                 <button type="submit" className="btn btn-primary">Sign In</button>
             </form>
-        </>        
+        </Fragment>        
     )
 }
 

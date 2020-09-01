@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext,Fragment } from 'react'
 import { TaskContext } from '../../context/TaskContext'
 
 export const AddTask = () => {
@@ -8,12 +8,12 @@ export const AddTask = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        AddTaskFireBase(task)
-        setTask('')
+        if(task !== ""){AddTaskFireBase(task)
+        setTask('')}
     }
 
     return (
-        <>
+        <Fragment>
             <form className="container"
                 autoComplete="off"
                 style={{ marginTop: "30px" }}
@@ -25,6 +25,6 @@ export const AddTask = () => {
                 </div>
                 <button type="submit" className="btn btn-primary">Add Task</button>
             </form>
-        </>
+        </Fragment>
     )
 }

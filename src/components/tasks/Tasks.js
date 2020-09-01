@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext,Fragment } from 'react'
 import { Task } from './Task'
 import { TaskContext } from '../../context/TaskContext'
 
@@ -7,7 +7,7 @@ export const Tasks = () => {
     const {Tasks} = useContext( TaskContext )
 
     return (
-        <>
+        <Fragment>
             <table className="table table-dark container" style={{marginTop:"30px"}}>
                 <thead>
                     <tr className="text-info">
@@ -26,6 +26,6 @@ export const Tasks = () => {
                     })}
                 </tbody>
             </table>
-        </>
+        </Fragment>
     )
 }
