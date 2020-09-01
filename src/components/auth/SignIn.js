@@ -4,21 +4,19 @@ import { Redirect } from 'react-router-dom'
 
 const SignIn = () => {
 
-    const { SignInFirebase,LogOn } = useContext(AuthContext)
+    const { SignInFirebase, LogOn } = useContext(AuthContext)
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        SignInFirebase(email,password)
+        SignInFirebase(email, password)
     }
 
-    if(LogOn){
+    if (LogOn) {
         return <Redirect to="/" />
     }
-
-
     
     return (
         <Fragment>
@@ -34,11 +32,11 @@ const SignIn = () => {
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Password</label>
-                    <input type="password" className="form-control" id="password" onChange={(e) => setPassword(e.target.value)} value={password} autoComplete="off"/>
+                    <input type="password" className="form-control" id="password" onChange={(e) => setPassword(e.target.value)} value={password} autoComplete="off" />
                 </div>
                 <button type="submit" className="btn btn-primary">Sign In</button>
             </form>
-        </Fragment>        
+        </Fragment>
     )
 }
 
