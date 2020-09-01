@@ -13,9 +13,12 @@ const SignUp = () => {
         e.preventDefault()
         SignUpFirebase(email,password)
     }
-
+    
+    if(LogOn){
+        return <Redirect to="/" />
+    }
+    
     return (
-        !LogOn ? 
         <>
             <form className="container"
                 autoComplete="off"
@@ -34,8 +37,6 @@ const SignUp = () => {
                 <button type="submit" className="btn btn-primary">Sign Up</button>
             </form>
         </>
-        :
-        <Redirect to="/" />
     )
 }
 

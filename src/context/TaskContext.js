@@ -5,9 +5,8 @@ import firebase from '../firebase'
 export const TaskContext = createContext()
 
 export const TaskContextProvider = (props) => {
-
+    
     const [Tasks, setTasks] = useState([])
-
     const { User } = useContext(AuthContext)
     
     useEffect(() => {
@@ -22,8 +21,9 @@ export const TaskContextProvider = (props) => {
             }))
             setTasks(newtask)
         })
+        // eslint-disable-next-line
     }, [])
-
+    
 
     const AddTaskFireBase = (task) => {
         const d = new Date()
@@ -47,12 +47,19 @@ export const TaskContextProvider = (props) => {
         })
     }
 
+    const EditTaskFireBase = (id,edittext) => {
+        firebase.firestore().collection("Users").doc(User.id).collection("Tasks").doc(id).update({
+            task: edittext
+        })
+    }
+
     return (
         <TaskContext.Provider
             value={{
                 Tasks,
                 AddTaskFireBase,
                 DeleteTaskFireBase,
+                EditTaskFireBase,
                 UpdateTaskFireBase
             }}
         >

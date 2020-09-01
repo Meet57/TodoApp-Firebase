@@ -14,8 +14,11 @@ const SignIn = () => {
         SignInFirebase(email,password)
     }
 
+    if(LogOn){
+        return <Redirect to="/" />
+    }
+
     return (
-        !LogOn ?
         <>
             <form className="container"
                 autoComplete="off"
@@ -33,9 +36,7 @@ const SignIn = () => {
                 </div>
                 <button type="submit" className="btn btn-primary">Sign In</button>
             </form>
-        </>
-        :
-        <Redirect to="/" />
+        </>        
     )
 }
 

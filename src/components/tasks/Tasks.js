@@ -11,10 +11,11 @@ export const Tasks = () => {
             <table className="table table-dark container" style={{marginTop:"30px"}}>
                 <thead>
                     <tr className="text-info">
-                        <th scope="col">Tasks</th>
-                        <th scope="col">Added On</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Delete</th>
+                        <th scope="col-auto">Tasks</th>
+                        <th scope="col-auto">Added On</th>
+                        <th scope="col-1">Edit</th>
+                        <th scope="col-1">Status</th>
+                        <th scope="col-1">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
