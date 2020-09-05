@@ -4,48 +4,37 @@ import firebase from '../firebase'
 export const AuthContext = createContext()
 
 export const AuthContextProvider = (props) => {
-
-    const [User, setUser] = useState(null)
+    
     const [LogOn, setLogOn] = useState(false)
-
+    
     useEffect(() => {
-        if(localStorage.getItem("LogOn")){
-            setUser(JSON.parse(localStorage.getItem("User")))
+        if (localStorage.getItem("LogOn")) {
             setLogOn(localStorage.getItem("LogOn"))
         }
-    },[])
-
+    }, [])
+    
     useEffect(() => {
-        localStorage.setItem("User",JSON.stringify(User))
-        localStorage.setItem("LogOn",LogOn)
-        if(!LogOn){
-            localStorage.removeItem("User")
+        localStorage.setItem("LogOn", LogOn)
+        if (!LogOn) {
             localStorage.removeItem("LogOn")
         }
-    }, [User,LogOn])
+    }, [LogOn])
 
     const SignUpFirebase = (email, password) => {
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then((data) => {
-                setUser({
-                    id: data.user.uid,
-                    email: data.user.email
-                })
                 setLogOn(true)
             })
             .catch((error) => {
                 console.log(error.code, error.message)
                 alert(error.message)
             })
+
     }
 
     const SignInFirebase = (email, password) => {
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then((data) => {
-                setUser({
-                    id: data.user.uid,
-                    email: data.user.email
-                })
                 setLogOn(true)
             })
             .catch((error) => {
@@ -56,9 +45,7 @@ export const AuthContextProvider = (props) => {
 
     const SignOutFirebase = () => {
         firebase.auth().signOut().then(() => {
-            setUser(null)
             setLogOn(false)
-            localStorage.removeItem("User")
             localStorage.removeItem("LogOn")
         }).catch(function (error) {
             console.log(error.code, error.message)
@@ -68,7 +55,6 @@ export const AuthContextProvider = (props) => {
     return (
         <AuthContext.Provider
             value={{
-                User,
                 LogOn,
                 SignUpFirebase,
                 SignInFirebase,
