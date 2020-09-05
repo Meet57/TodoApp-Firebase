@@ -1,6 +1,7 @@
 import React, { useContext,Fragment } from 'react'
 import { Task } from './Task'
 import { TaskContext } from '../../context/TaskContext'
+import { Table } from 'react-bootstrap'
 
 export const Tasks = () => {
 
@@ -8,7 +9,7 @@ export const Tasks = () => {
 
     return (
         <Fragment>
-            <table className="table table-dark container" style={{marginTop:"30px"}}>
+            <Table responsive className="table table-dark container" style={{marginTop:"30px"}}>
                 <thead>
                     <tr className="text-info">
                         <th scope="col-auto">Tasks</th>
@@ -25,7 +26,7 @@ export const Tasks = () => {
                         )
                     })}
                 </tbody>
-            </table>
+            </Table>
         </Fragment>
     )
 }
