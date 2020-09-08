@@ -21,6 +21,7 @@ export const TaskContextProvider = (props) => {
                 .collection("Users")
                 .doc(User.uid)
                 .collection("Tasks")
+                .orderBy('addedon','desc')
                 .onSnapshot((snapshot) => {
                     const newtask = snapshot.docs.map((doc) => ({
                         id: doc.id,
