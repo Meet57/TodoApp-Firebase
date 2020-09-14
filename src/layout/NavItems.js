@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext'
 
 export const NavItems = () => {
@@ -9,19 +9,19 @@ export const NavItems = () => {
     if (!LogOn) {
         return (
             <div className="d-flex">
-                <Link to="/signin" className="nav-link">
+                <NavLink to="/signin" activeClassName="border-bottom border-top border-primary rounded" className="nav-link">
                     Sign In
-                </Link>
-                <Link to="/signup" className="nav-link mr-md-5">
+                </NavLink>
+                <NavLink to="/signup" activeClassName="border-bottom border-top border-primary rounded" className="nav-link mr-md-5">
                     Sign Up
-                </Link>
+                </NavLink>
             </div>
         )
     }
 
     return (
-        <Link to="/signin" className="nav-link mr-md-5" onClick={SignOutFirebase}>
+        <NavLink to="/signin" className="nav-link mr-md-5" onClick={SignOutFirebase}>
             Sign Out
-        </Link>
+        </NavLink>
     )
 }
